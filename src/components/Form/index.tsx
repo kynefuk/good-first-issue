@@ -1,17 +1,46 @@
-import React from "react";
-import { FormControl, FormLabel, Select, Input } from "@chakra-ui/react";
-import { constants } from "../../constants";
+import React, { useState } from "react";
+import { FormControl, FormLabel, Input, Box } from "@chakra-ui/react";
+import { QueryTag } from "../QueryTag/index";
 
-export const QueryForm: React.FC = () => {
+export type QueryFormProps = {
+  label: string;
+  queryDataList: string[];
+};
+
+export const QueryForm: React.FC<QueryFormProps> = ({
+  label,
+  queryDataList,
+}) => {
+  const [queryData, setQueryData] = useState<string[]>([]);
+  const handleOnKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    const input = event.currentTarget.value;
+    if (queryData.includes(input)) {
+      return;
+    }
+    if (!queryDataList.includes(input)) {
+      return;
+    }
+    // TODO
+    if (event.which === 13) {
+      setQueryData([...queryData, input]);
+    }
+    event.currentTarget.value = "";
+  };
+
   return (
-    <FormControl id="query">
-      <FormLabel>Language</FormLabel>
-      <Input placeholder="Select Language" list="language" />
-      <datalist id="language">
-        {constants.searchFilters.languages.map((lang) => (
-          <option key={lang}>{lang}</option>
+    <Box>
+      <FormControl id="query">
+        <FormLabel>{label}</FormLabel>
+        {queryData.map((data) => (
+          <QueryTag key={data} query={data} setQueryData={setQueryData} />
         ))}
-      </datalist>
-    </FormControl>
+        <Input type="text" list={label} onKeyPress={handleOnKeyPress} />
+        <datalist id={label}>
+          {queryDataList.map((data) => (
+            <option key={data}>{data}</option>
+          ))}
+        </datalist>
+      </FormControl>
+    </Box>
   );
 };

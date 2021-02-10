@@ -25,10 +25,6 @@ module.exports = {
   ],
   // ルールに従わないとエラーになる
   "rules": {
-    "indent": [
-      "error",
-      2
-    ],
     "linebreak-style": [
       "error",
       "unix"
@@ -43,6 +39,8 @@ module.exports = {
       "always"
     ],
     "@typescript-eslint/explicit-module-boundary-types": "off",
-    "react/prop-types": "off"
+    "react/prop-types": "off",
+    "indent": "off",
+    "@typescript-eslint/indent": ["error", 2]
   }
 };

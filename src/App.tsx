@@ -5,8 +5,23 @@ import { Header } from "./components/Header/index";
 import { Description } from "./components/Description/index";
 import { QueryForm } from "./components/Form/index";
 import { constants } from "./constants";
+import { useDispatch, useSelector } from "react-redux";
+import { IssueState, issueSlice } from "./features/results";
+import { Issue } from "./domains/github/models/issues";
+import { useQuery } from "react-query";
+import { queryIssues } from "./domains/github/services/index";
 
 function App() {
+  const { data: issues = [] } = useQuery(["hoge", "fuga"], () =>
+    queryIssues(
+      "q=windows+label:bug+language:python+state:open&sort=created&order=asc"
+    )
+  );
+  const results = useSelector<IssueState, Issue[]>((state) => state.issues);
+  const dispatch = useDispatch();
+  const handleOnClick = () => {
+    dispatch(issueSlice.actions.add([]));
+  };
   return (
     <ChakraProvider>
       <div className="App">
@@ -21,8 +36,9 @@ function App() {
             label="label"
             queryDataList={constants.searchFilters.labels}
           />
+          <h3>{results.length}</h3>
           <Box>
-            <Button>Search</Button>
+            <Button onClick={handleOnClick}>Search</Button>
           </Box>
         </Box>
       </div>

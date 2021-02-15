@@ -3,7 +3,7 @@ import { Box, Text, Heading } from "@chakra-ui/react";
 
 export const Description: React.FC = () => {
   return (
-    <Box mt="20" w="50%" textAlign="left">
+    <Box mt="20" w="50%" textAlign="center">
       <Heading as="h1" size="xl">
         GitHubのOSSにコントリビュート
       </Heading>

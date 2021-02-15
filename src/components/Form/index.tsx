@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FormControl, FormLabel, Input, Box } from "@chakra-ui/react";
+import { FormControl, FormLabel, Input, Center } from "@chakra-ui/react";
 import { QueryTag } from "../QueryTag/index";
 
 export type QueryFormProps = {
@@ -28,8 +28,8 @@ export const QueryForm: React.FC<QueryFormProps> = ({
   };
 
   return (
-    <Box>
-      <FormControl id="query">
+    <Center>
+      <FormControl id="query" w="80%">
         <FormLabel>{label}</FormLabel>
         {queryData.map((data) => (
           <QueryTag key={data} query={data} setQueryData={setQueryData} />
@@ -41,6 +41,6 @@ export const QueryForm: React.FC<QueryFormProps> = ({
           ))}
         </datalist>
       </FormControl>
-    </Box>
+    </Center>
   );
 };

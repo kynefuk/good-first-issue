@@ -14,13 +14,13 @@ import { queryIssues } from "./domains/github/services/index";
 function App() {
   const { data: issues = [] } = useQuery(["hoge", "fuga"], () =>
     queryIssues(
-      "q=windows+label:bug+language:python+state:open&sort=created&order=asc"
+      "q=linux+label:bug+language:python+state:open&sort=created&order=asc"
     )
   );
   const results = useSelector<IssueState, Issue[]>((state) => state.issues);
   const dispatch = useDispatch();
   const handleOnClick = () => {
-    dispatch(issueSlice.actions.add([]));
+    dispatch(issueSlice.actions.add(issues));
   };
   return (
     <ChakraProvider>

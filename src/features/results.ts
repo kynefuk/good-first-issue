@@ -1,8 +1,16 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Issue } from "../domains/github/models/issues";
 
-export type IssueState = { issues: Issue[] };
-export const initialState: IssueState = { issues: [] };
+export type IssueState = {
+  issues: Issue[];
+  //queryLangs: string[];
+  //queryTags: string[];
+};
+export const initialState: IssueState = {
+  issues: [],
+  //queryLangs: [],
+  //queryTags: [],
+};
 
 export const issueSlice = createSlice({
   name: "issue",
@@ -12,7 +20,8 @@ export const issueSlice = createSlice({
       ...state,
       issues: [...state.issues, ...action.payload],
     }),
-    removeAll: (state, action: PayloadAction<Issue[]>) => ({
+    removeAll: (state) => ({
+      ...state,
       issues: [],
     }),
   },

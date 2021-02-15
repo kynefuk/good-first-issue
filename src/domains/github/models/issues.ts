@@ -23,6 +23,12 @@ export type Issue = {
   body: string;
 };
 
+export type IssueResponse = {
+  total_count: number;
+  incomplete_results: boolean;
+  items: Issue[];
+};
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const isIssue = (args: any): args is Issue => {
   return (
@@ -34,11 +40,14 @@ export const isIssue = (args: any): args is Issue => {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const isIssues = (args: any): args is Issue[] => {
+export const isIssues = (args: any): args is IssueResponse => {
+  const response = args as IssueResponse;
   return (
-    args !== null &&
-    args !== undefined &&
-    typeof args === "object" &&
-    typeof args.items[0].html_url === "string"
+    response !== null &&
+    response !== undefined &&
+    typeof response === "object" &&
+    typeof response.total_count === "number" &&
+    typeof response.incomplete_results === "boolean" &&
+    typeof response.items[0].html_url === "string"
   );
 };

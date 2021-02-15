@@ -48,7 +48,7 @@ export const constants = {
       "TypeScript",
       "VimL",
       "Visual Basic",
-    ],
+    ] as const,
     labels: [
       "bug",
       "critical",
@@ -73,6 +73,6 @@ export const constants = {
       "question",
       "up for grabs",
       "urgent",
-    ],
+    ] as const,
   },
 };

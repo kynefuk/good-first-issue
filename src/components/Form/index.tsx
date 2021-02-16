@@ -1,38 +1,30 @@
-import React, { useState } from "react";
+import React from "react";
 import { FormControl, FormLabel, Input, Center } from "@chakra-ui/react";
 import { QueryTag } from "../QueryTag/index";
+import { constants } from "../../constants";
 
-export type QueryFormProps = {
+export type queryLangs = typeof constants.searchFilters.languages[number];
+export type queryLabels = typeof constants.searchFilters.labels[number];
+
+export type QueryFormPresenterProps = {
   label: string;
-  queryDataList: string[];
+  queryDataList: readonly any[];
+  queryTags: readonly any[];
+  handleOnKeyPress: (event: React.KeyboardEvent<HTMLInputElement>) => void;
 };
 
-export const QueryForm: React.FC<QueryFormProps> = ({
+export const QueryFormPresenter: React.FC<QueryFormPresenterProps> = ({
   label,
   queryDataList,
+  queryTags,
+  handleOnKeyPress,
 }) => {
-  const [queryData, setQueryData] = useState<string[]>([]);
-  const handleOnKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    const input = event.currentTarget.value;
-    if (queryData.includes(input)) {
-      return;
-    }
-    if (!queryDataList.includes(input)) {
-      return;
-    }
-    // TODO
-    if (event.which === 13) {
-      setQueryData([...queryData, input]);
-    }
-    event.currentTarget.value = "";
-  };
-
   return (
     <Center>
       <FormControl id="query" w="80%">
         <FormLabel>{label}</FormLabel>
-        {queryData.map((data) => (
-          <QueryTag key={data} query={data} setQueryData={setQueryData} />
+        {queryTags.map((data) => (
+          <QueryTag key={data} query={data} />
         ))}
         <Input type="text" list={label} onKeyPress={handleOnKeyPress} />
         <datalist id={label}>

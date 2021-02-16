@@ -5,11 +5,11 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
-import { issueSlice } from "./features/results";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
+import { rootReducer } from "./features/root";
 
-const store = configureStore({ reducer: issueSlice.reducer });
+const store = configureStore({ reducer: rootReducer });
 
 const queryClient = new QueryClient({
   defaultOptions: {

@@ -1,21 +1,24 @@
 import React from "react";
 import { QueryFormPresenter } from "../../components/Form/index";
 import { useDispatch, useSelector } from "react-redux";
-import { isQueryLang } from "../../features/queryLang";
-import { QueryLangState, QueryLang } from "../../features/queryLang";
-import { queryLangSlice } from "../../features/queryLang";
+import { isQueryLabel } from "../../features/queryLabel";
+import { QueryLabelState, QueryLabel } from "../../features/queryLabel";
+import { queryLabelSlice } from "../../features/queryLabel";
 import { RootState } from "../../features/root";
 
-export type LangFormProps = {
+export type LabelFormProps = {
   label: string;
-  queryDataList: readonly QueryLang[];
+  queryDataList: readonly QueryLabel[];
 };
 
-export const LangForm: React.FC<LangFormProps> = ({ label, queryDataList }) => {
-  const queryLang = useSelector<RootState, QueryLangState>(
-    (state) => state.queryLang
+export const LabelForm: React.FC<LabelFormProps> = ({
+  label,
+  queryDataList,
+}) => {
+  const queryLabel = useSelector<RootState, QueryLabelState>(
+    (state) => state.queryLabel
   );
-  const queryLangs = queryLang.queryLangs;
+  const queryLabels = queryLabel.queryLabels;
   const dispatch = useDispatch();
 
   const handleOnKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -23,11 +26,11 @@ export const LangForm: React.FC<LangFormProps> = ({ label, queryDataList }) => {
     if (event.which !== 13) {
       return;
     } else {
-      if (isQueryLang(input)) {
-        if (queryLangs.includes(input)) {
+      if (isQueryLabel(input)) {
+        if (queryLabels.includes(input)) {
           return;
         } else if (queryDataList.includes(input)) {
-          dispatch(queryLangSlice.actions.add(input));
+          dispatch(queryLabelSlice.actions.add(input));
         }
       }
     }
@@ -38,9 +41,9 @@ export const LangForm: React.FC<LangFormProps> = ({ label, queryDataList }) => {
     <QueryFormPresenter
       label={label}
       queryDataList={queryDataList}
-      queryTags={queryLangs}
+      queryTags={queryLabels}
       handleOnKeyPress={handleOnKeyPress}
-      slice={queryLangSlice}
+      slice={queryLabelSlice}
     />
   );
 };

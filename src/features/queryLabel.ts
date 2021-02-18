@@ -14,9 +14,9 @@ export const queryLabelSlice = createSlice({
   name: "queryLabel",
   initialState,
   reducers: {
-    add: (state, action: PayloadAction<QueryLabel[]>) => ({
+    add: (state, action: PayloadAction<QueryLabel>) => ({
       ...state,
-      queryLabels: action.payload,
+      queryLabels: [...state.queryLabels, action.payload],
     }),
     delete: (state, action: PayloadAction<QueryLabel>) => {
       const newArray = state.queryLabels.filter(
@@ -30,3 +30,9 @@ export const queryLabelSlice = createSlice({
     }),
   },
 });
+
+export const isQueryLabel = (arg: string): arg is QueryLabel => {
+  return ((constants.searchFilters.labels as unknown) as string[]).includes(
+    arg
+  );
+};

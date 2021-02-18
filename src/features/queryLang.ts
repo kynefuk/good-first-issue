@@ -30,3 +30,9 @@ export const queryLangSlice = createSlice({
     }),
   },
 });
+
+export const isQueryLang = (arg: string): arg is QueryLang => {
+  return ((constants.searchFilters.languages as unknown) as string[]).includes(
+    arg
+  );
+};

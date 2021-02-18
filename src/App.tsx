@@ -4,10 +4,10 @@ import { ChakraProvider, Box, Button } from "@chakra-ui/react";
 import { Header } from "./components/Header/index";
 import { Description } from "./components/Description/index";
 import { LangForm } from "./container/LangForm";
+import { LabelForm } from "./container/LabelForm";
 import { constants } from "./constants";
 import { useDispatch, useSelector } from "react-redux";
 import { IssueState, issueSlice } from "./features/results";
-import { Issue } from "./domains/github/models/issues";
 import { useQuery } from "react-query";
 import { queryIssues } from "./domains/github/services/index";
 import { RootState } from "./features/root";
@@ -22,7 +22,6 @@ function App() {
   const results = data.issues;
   const dispatch = useDispatch();
   const handleOnClick = () => {
-    // dispatch(issueSlice.actions.add(issues));
     dispatch(issueSlice.actions.add(issues));
   };
   return (
@@ -35,10 +34,10 @@ function App() {
             label="language"
             queryDataList={constants.searchFilters.languages}
           />
-          {/* <QueryForm
+          <LabelForm
             label="label"
             queryDataList={constants.searchFilters.labels}
-          /> */}
+          />
           <h3>{results.length}</h3>
           <Box>
             <Button onClick={handleOnClick}>Search</Button>

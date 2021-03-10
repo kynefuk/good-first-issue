@@ -11,6 +11,7 @@ import { IssueState, issueSlice } from './features/results';
 import { useQuery } from 'react-query';
 import { queryIssues } from './domains/github/services/index';
 import { RootState } from './features/root';
+import { IssueList } from './components/IssueList';
 
 const App = () => {
   const { data: issues = [] } = useQuery(['hoge', 'fuga'], () =>
@@ -24,25 +25,29 @@ const App = () => {
   const handleOnClick = () => {
     dispatch(issueSlice.actions.add(issues));
   };
+
   return (
     <ChakraProvider>
       <div className='App'>
-        <Box>
-          <Header />
-          <Description />
-          <LangForm
-            label='language'
-            queryDataList={constants.searchFilters.languages}
-          />
-          <LabelForm
-            label='label'
-            queryDataList={constants.searchFilters.labels}
-          />
-          <h3>{results.length}</h3>
-          <Box>
-            <Button onClick={handleOnClick}>Search</Button>
+        <Header />
+        <main style={{ padding: '3rem' }}>
+          <Box alignContent='center'>
+            <Description />
+            <LangForm
+              label='language'
+              queryDataList={constants.searchFilters.languages}
+            />
+            <LabelForm
+              label='label'
+              queryDataList={constants.searchFilters.labels}
+            />
+            <h3>{results.length}</h3>
+            <Box>
+              <Button onClick={handleOnClick}>Search</Button>
+            </Box>
           </Box>
-        </Box>
+          <IssueList issues={results} />
+        </main>
       </div>
     </ChakraProvider>
   );

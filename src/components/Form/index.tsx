@@ -24,12 +24,12 @@ export const QueryFormPresenter: React.FC<QueryFormPresenterProps> = ({
 }) => {
   return (
     <Center>
-      <FormControl id="query" w="80%">
+      <FormControl id='query'>
         <FormLabel>{label}</FormLabel>
         {queryTags.map((data) => (
           <QueryTag key={data} query={data} slice={slice} />
         ))}
-        <Input type="text" list={label} onKeyPress={handleOnKeyPress} />
+        <Input type='text' list={label} onKeyPress={handleOnKeyPress} />
         <datalist id={label}>
           {queryDataList.map((data) => (
             <option key={data}>{data}</option>

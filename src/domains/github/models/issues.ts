@@ -51,3 +51,21 @@ export const isIssues = (args: any): args is IssueResponse => {
     typeof response.items[0].html_url === 'string'
   );
 };
+
+export const getUserName = (user: User) => {
+  return user.html_url.split('github.com/')[1];
+};
+
+export const getRepoName = (html_url: string) => {
+  const userName = html_url.split('/')[3];
+  const repoName = html_url.split('/')[4];
+  return userName.concat(...['/', repoName]);
+};
+
+export const getRepoURL = (html_url: string) => {
+  return html_url.split('issues/')[0];
+};
+
+export const removeBCFromBody = (body: string) => {
+  return body.split('bc..')[1];
+};

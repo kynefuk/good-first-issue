@@ -1,10 +1,10 @@
-import React from "react";
-import { QueryFormPresenter } from "../../components/Form/index";
-import { useDispatch, useSelector } from "react-redux";
-import { isQueryLang } from "../../features/queryLang";
-import { QueryLangState, QueryLang } from "../../features/queryLang";
-import { queryLangSlice } from "../../features/queryLang";
-import { RootState } from "../../features/root";
+import React from 'react';
+import { QueryFormPresenter } from '../../components/Form/index';
+import { useDispatch, useSelector } from 'react-redux';
+import { isQueryLang } from '../../features/queryLang';
+import { QueryLangState, QueryLang } from '../../features/queryLang';
+import { queryLangSlice } from '../../features/queryLang';
+import { RootState } from '../../features/root';
 
 export type LangFormProps = {
   label: string;
@@ -31,7 +31,7 @@ export const LangForm: React.FC<LangFormProps> = ({ label, queryDataList }) => {
         }
       }
     }
-    event.currentTarget.value = "";
+    event.currentTarget.value = '';
   };
 
   return (

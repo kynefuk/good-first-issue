@@ -1,10 +1,10 @@
-import React from "react";
-import { QueryFormPresenter } from "../../components/Form/index";
-import { useDispatch, useSelector } from "react-redux";
-import { isQueryLabel } from "../../features/queryLabel";
-import { QueryLabelState, QueryLabel } from "../../features/queryLabel";
-import { queryLabelSlice } from "../../features/queryLabel";
-import { RootState } from "../../features/root";
+import React from 'react';
+import { QueryFormPresenter } from '../../components/Form/index';
+import { useDispatch, useSelector } from 'react-redux';
+import { isQueryLabel } from '../../features/queryLabel';
+import { QueryLabelState, QueryLabel } from '../../features/queryLabel';
+import { queryLabelSlice } from '../../features/queryLabel';
+import { RootState } from '../../features/root';
 
 export type LabelFormProps = {
   label: string;
@@ -34,7 +34,7 @@ export const LabelForm: React.FC<LabelFormProps> = ({
         }
       }
     }
-    event.currentTarget.value = "";
+    event.currentTarget.value = '';
   };
 
   return (

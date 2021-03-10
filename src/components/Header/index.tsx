@@ -1,7 +1,7 @@
-import React from "react";
-import { Box, Flex, Spacer, Icon, Link } from "@chakra-ui/react";
-import { GoMarkGithub } from "react-icons/go";
-import { ColorToggle } from "../ColorToggle/index";
+import React from 'react';
+import { Box, Flex, Spacer, Icon, Link } from '@chakra-ui/react';
+import { GoMarkGithub } from 'react-icons/go';
+import { ColorToggle } from '../ColorToggle/index';
 
 export const Header: React.FC = () => {
   return (

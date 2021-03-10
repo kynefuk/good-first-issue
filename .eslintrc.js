@@ -1,46 +1,50 @@
 module.exports = {
-  "env": {
-    "browser": true,
-    "es2021": true
+  env: {
+    browser: true,
+    es2021: true
   },
-  "extends": [
+  extends: [
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
-    // prettier関連は"extends"の最後に書く必要がある
-    "prettier",
+    // prettier関連はextendsの最後に書く必要がある
     "prettier/@typescript-eslint",
+    "prettier/react",
   ],
-  "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true
     },
-    "ecmaVersion": 12,
-    "sourceType": "module"
+    ecmaVersion: 12,
+    project: "./tsconfig.eslint.json",
+    sourceType: "module",
+    tsconfigRootDir: __dirname,
   },
-  "plugins": [
+  plugins: [
+    "@typescript-eslint",
     "react",
-    "@typescript-eslint"
+    'prefer-arrow',
   ],
+  root: true,
   // ルールに従わないとエラーになる
-  "rules": {
-    "linebreak-style": [
-      "error",
-      "unix"
-    ],
+  rules: {
     // ダブルクオートじゃないとエラー
     "quotes": [
       "error",
-      "double"
+      "single"
     ],
-    "semi": [
+    "prefer-arrow/prefer-arrow-functions": [
       "error",
-      "always"
+      {
+        disallowPrototype: true,
+        singleReturnOnly: false,
+        classPropertiesAllowed: false,
+      }
     ],
+    "no-mixed-spaces-and-tabs": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "react/prop-types": "off",
     "indent": "off",
-    "@typescript-eslint/indent": ["error", 2]
   }
 };

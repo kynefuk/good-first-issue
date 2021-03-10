@@ -1,6 +1,6 @@
-import ky from "ky";
-import { Issue } from "../models/issues";
-import { isIssues } from "../models/issues";
+import ky from 'ky';
+import { Issue } from '../models/issues';
+import { isIssues } from '../models/issues';
 
 export const queryIssues = async (query: string): Promise<Issue[]> => {
   const response = await ky.get(
@@ -10,7 +10,7 @@ export const queryIssues = async (query: string): Promise<Issue[]> => {
   console.log(data);
 
   if (!isIssues(data)) {
-    throw Error("API type error");
+    throw Error('API type error');
   }
 
   return data.items;

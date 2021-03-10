@@ -1,6 +1,6 @@
-import React from "react";
-import { Box, Image } from "@chakra-ui/react";
-import { Issue } from "../../domains/github/models/issues";
+import React from 'react';
+import { Box, Image } from '@chakra-ui/react';
+import { Issue } from '../../domains/github/models/issues';
 
 export type IssueItemProps = Issue;
 

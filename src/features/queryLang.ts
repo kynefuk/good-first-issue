@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { constants } from "../constants";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { constants } from '../constants';
 
 export type QueryLang = typeof constants.searchFilters.languages[number];
 
@@ -11,7 +11,7 @@ export const initialState: QueryLangState = {
 };
 
 export const queryLangSlice = createSlice({
-  name: "queryLang",
+  name: 'queryLang',
   initialState,
   reducers: {
     add: (state, action: PayloadAction<QueryLang>) => ({

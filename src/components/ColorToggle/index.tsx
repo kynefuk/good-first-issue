@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { Box, useColorMode, Switch } from "@chakra-ui/react";
-import { MoonIcon, SunIcon } from "@chakra-ui/icons";
+import React, { useState } from 'react';
+import { Box, useColorMode, Switch } from '@chakra-ui/react';
+import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 
 export const ColorToggle: React.FC = () => {
   const { toggleColorMode } = useColorMode();

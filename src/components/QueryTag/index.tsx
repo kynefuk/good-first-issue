@@ -1,9 +1,9 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { Tag, TagCloseButton, TagLabel } from "@chakra-ui/react";
-import { isQueryLang } from "../../features/queryLang";
-import { isQueryLabel } from "../../features/queryLabel";
-import { QueryLabelSliceType, QueryLangSliceType } from "../../types/index";
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { Tag, TagCloseButton, TagLabel } from '@chakra-ui/react';
+import { isQueryLang } from '../../features/queryLang';
+import { isQueryLabel } from '../../features/queryLabel';
+import { QueryLabelSliceType, QueryLangSliceType } from '../../types/index';
 
 export type QueryTagProps = {
   query: string;
@@ -13,7 +13,7 @@ export type QueryTagProps = {
 export const QueryTag: React.FC<QueryTagProps> = ({ query, slice }) => {
   const dispatch = useDispatch();
   const handleOnClick = () => {
-    if (slice.name === "queryLang") {
+    if (slice.name === 'queryLang') {
       if (isQueryLang(query)) {
         dispatch(slice.actions.delete(query));
       }

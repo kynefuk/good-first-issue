@@ -1,5 +1,5 @@
-import React from "react";
-import { Box, Text, Heading } from "@chakra-ui/react";
+import React from 'react';
+import { Box, Text, Heading } from '@chakra-ui/react';
 
 export const Description: React.FC = () => {
   return (

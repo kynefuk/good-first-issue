@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { constants } from "../constants";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { constants } from '../constants';
 
 export type QueryLabel = typeof constants.searchFilters.labels[number];
 
@@ -11,7 +11,7 @@ export const initialState: QueryLabelState = {
 };
 
 export const queryLabelSlice = createSlice({
-  name: "queryLabel",
+  name: 'queryLabel',
   initialState,
   reducers: {
     add: (state, action: PayloadAction<QueryLabel>) => ({

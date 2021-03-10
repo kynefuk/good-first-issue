@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Issue } from "../domains/github/models/issues";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { Issue } from '../domains/github/models/issues';
 
 export type IssueState = {
   issues: Issue[];
@@ -9,7 +9,7 @@ export const initialState: IssueState = {
 };
 
 export const issueSlice = createSlice({
-  name: "issue",
+  name: 'issue',
   initialState,
   reducers: {
     add: (state, action: PayloadAction<Issue[]>) => ({

@@ -1,8 +1,8 @@
-import React from "react";
-import { FormControl, FormLabel, Input, Center } from "@chakra-ui/react";
-import { QueryTag } from "../QueryTag/index";
-import { constants } from "../../constants";
-import { QueryLangSliceType, QueryLabelSliceType } from "../../types/index";
+import React from 'react';
+import { FormControl, FormLabel, Input, Center } from '@chakra-ui/react';
+import { QueryTag } from '../QueryTag/index';
+import { constants } from '../../constants';
+import { QueryLangSliceType, QueryLabelSliceType } from '../../types/index';
 
 export type queryLangs = typeof constants.searchFilters.languages[number];
 export type queryLabels = typeof constants.searchFilters.labels[number];

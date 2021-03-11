@@ -21,6 +21,7 @@ const App = () => {
   );
   const data = useSelector<RootState, IssueState>((state) => state.issue);
   const results = data.issues;
+  console.log(results);
   const dispatch = useDispatch();
   const handleOnClick = () => {
     dispatch(issueSlice.actions.add(issues));

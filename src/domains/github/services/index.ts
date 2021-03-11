@@ -7,7 +7,6 @@ export const queryIssues = async (query: string): Promise<Issue[]> => {
     `https://api.github.com/search/issues?${query}`
   );
   const data = (await response.json()) as unknown;
-  console.log(data);
 
   if (!isIssues(data)) {
     throw Error('API type error');

@@ -16,7 +16,7 @@ export type Issue = {
   html_url: string;
   title: string;
   user: User;
-  label: Label[];
+  labels: Label[];
   state: 'open' | 'closed';
   created_at: string;
   updated_at: string;

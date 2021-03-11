@@ -7,6 +7,7 @@ import {
   getRepoURL,
   removeBCFromBody,
 } from '../../domains/github/models/issues';
+import { IssueTag } from '../IssueTag';
 
 export const IssueItem: React.FC<Issue> = ({
   repository_url,
@@ -14,7 +15,7 @@ export const IssueItem: React.FC<Issue> = ({
   html_url,
   title,
   user,
-  label,
+  labels,
   state,
   created_at,
   updated_at,
@@ -40,6 +41,13 @@ export const IssueItem: React.FC<Issue> = ({
           </Link>
         </Text>
         <small>{created_at}</small>
+        {labels.map((label) => (
+          <IssueTag
+            key={label.name}
+            tagName={label.name}
+            tagColor={label.color}
+          />
+        ))}
         <Divider />
         <Text
           fontSize='small'

@@ -42,6 +42,9 @@ export const isIssue = (args: any): args is Issue => {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const isIssues = (args: any): args is IssueResponse => {
   const response = args as IssueResponse;
+  if (response.total_count === 0) {
+    return false;
+  }
   return (
     response !== null &&
     response !== undefined &&
@@ -66,6 +69,13 @@ export const getRepoURL = (html_url: string) => {
   return html_url.split('issues/')[0];
 };
 
-export const removeBCFromBody = (body: string) => {
-  return body.split('bc..')[1];
+export const removeBCFromBody = (body: string | null) => {
+  if (body !== null) {
+    if (body.startsWith('bc..')) {
+      return body.split('bc..')[1];
+    } else {
+      return body;
+    }
+  }
+  return null;
 };

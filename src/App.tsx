@@ -12,17 +12,36 @@ import { useQuery } from 'react-query';
 import { queryIssues } from './domains/github/services/index';
 import { RootState } from './features/root';
 import { IssueList } from './components/IssueList';
+import { QueryLangState } from './features/queryLang';
+import { QueryLabelState } from './features/queryLabel';
 
 const App = () => {
-  const { data: issues = [] } = useQuery(['hoge', 'fuga'], () =>
-    queryIssues(
-      'q=linux+label:bug+language:python+state:open&sort=created&order=asc'
-    )
+  const issueState = useSelector<RootState, IssueState>((state) => state.issue);
+  const langFormState = useSelector<RootState, QueryLangState>(
+    (state) => state.queryLang
   );
-  const data = useSelector<RootState, IssueState>((state) => state.issue);
-  const results = data.issues;
-  console.log(results);
+  const labelFormState = useSelector<RootState, QueryLabelState>(
+    (state) => state.queryLabel
+  );
+
   const dispatch = useDispatch();
+
+  const constructParams = (
+    langForm: QueryLangState,
+    labelForm: QueryLabelState
+  ) => {
+    const langParams = langForm.queryLangs.join(':');
+    const labelPrams = labelForm.queryLabels.join(':');
+    return `q=+label:${labelPrams.toLowerCase()}+language:${langParams.toLowerCase()}+state:open&sort=created&order=desc`;
+  };
+
+  // FIXME フォームのタグ変更のタイミングで再描画されてしまう
+  // FIXME API type errorをErrorBoundaryで処理
+  const { data: issues = [] } = useQuery(
+    [...langFormState.queryLangs, ...labelFormState.queryLabels],
+    () => queryIssues(constructParams(langFormState, labelFormState))
+  );
+
   const handleOnClick = () => {
     dispatch(issueSlice.actions.add(issues));
   };
@@ -42,12 +61,11 @@ const App = () => {
               label='label'
               queryDataList={constants.searchFilters.labels}
             />
-            <h3>{results.length}</h3>
             <Box>
               <Button onClick={handleOnClick}>Search</Button>
             </Box>
           </Box>
-          <IssueList issues={results} />
+          <IssueList issues={issueState.issues} />
         </main>
       </div>
     </ChakraProvider>

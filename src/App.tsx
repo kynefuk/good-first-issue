@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import './App.css';
 import { ChakraProvider, Box, Button } from '@chakra-ui/react';
 import { Header } from './components/Header/index';
@@ -37,13 +37,13 @@ const App = () => {
 
   // FIXME フォームのタグ変更のタイミングで再描画されてしまう
   // FIXME API type errorをErrorBoundaryで処理
-  const { data: issues = [] } = useQuery(
-    [...langFormState.queryLangs, ...labelFormState.queryLabels],
-    () => queryIssues(constructParams(langFormState, labelFormState))
-  );
+  // const { data: issues = [] } = useQuery(
+  //   [...langFormState.queryLangs, ...labelFormState.queryLabels],
+  //   () => queryIssues(constructParams(langFormState, labelFormState))
+  // );
 
   const handleOnClick = () => {
-    dispatch(issueSlice.actions.add(issues));
+    // dispatch(issueSlice.actions.add(issues));
   };
 
   return (
@@ -65,7 +65,9 @@ const App = () => {
               <Button onClick={handleOnClick}>Search</Button>
             </Box>
           </Box>
-          <IssueList issues={issueState.issues} />
+          <Suspense fallback={<h1>Loading</h1>}>
+            <IssueList issues={issueState.issues} />
+          </Suspense>
         </main>
       </div>
     </ChakraProvider>

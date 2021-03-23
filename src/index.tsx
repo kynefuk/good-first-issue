@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
@@ -11,12 +11,14 @@ import { rootReducer } from './features/root';
 
 const store = configureStore({ reducer: rootReducer });
 
-const queryClient = new QueryClient({
+export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       retry: 0,
-      staleTime: 1000,
+      staleTime: 6000000,
+      cacheTime: 6000000,
       refetchOnWindowFocus: false,
+      enabled: false,
       suspense: true,
     },
     mutations: {
@@ -29,7 +31,9 @@ ReactDOM.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <Provider store={store}>
-        <App />
+        <Suspense fallback={<h1>Loading</h1>}>
+          <App />
+        </Suspense>
         {process.env.NODE_ENV === 'development' && (
           <ReactQueryDevtools initialIsOpen={false} />
         )}
